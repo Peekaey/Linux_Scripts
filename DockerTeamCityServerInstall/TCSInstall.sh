@@ -7,7 +7,7 @@ root_passwod="rootpassword"
 
 
 # Install docker and its dependencies
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 sudo apt-get install -y \
 apt-transport-https \
 ca-certificates \
@@ -19,9 +19,11 @@ echo \
 "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
 $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
+echo installing docker
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io 
 
 #Installing Teamcity server docker instance
+echo installing teamcity
 mkdir -p teamcity
 mkdir teamcity/data
 mkdir teamcity/logs
@@ -36,6 +38,7 @@ sudo docker run -it -d
  jetbrains/teamcity-server
 
 # Installing MariaDB docker instance
+echo installing MariaDB
  sudo docker run --detach \
   -p 3306:3306 \
   --name some-mariadb \
